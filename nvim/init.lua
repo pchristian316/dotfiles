@@ -1,7 +1,6 @@
 
 -- Config was built using the following config:
 -- https://github.com/numToStr/dotfiles/tree/master/neovim/.config/nvim/
-
 local g   = vim.g
 local o   = vim.o
 local opt = vim.opt
@@ -32,13 +31,12 @@ o.cursorline = true
 
 -- Better editing experience
 o.expandtab = true
-o.smarttab = true
-o.cindent = true
+o.smarttab = true o.cindent = true
 o.autoindent = true
 o.wrap = true
 o.textwidth = 300
-o.tabstop = 4
-o.shiftwidth = 4
+o.tabstop = 2
+o.shiftwidth = 2
 o.softtabstop = -1 -- If negative, shiftwidth value is used
 o.list = true
 o.listchars = 'trail:·,nbsp:◇,tab:→ ,extends:▸,precedes:◂'
@@ -105,6 +103,7 @@ local ok, _ = pcall(vim.cmd, 'colorscheme base16-ayu-dark')
 -- local ok, _ = pcall(vim.cmd, 'colorscheme base16-solarized-light')
 -- local ok, _ = pcall(vim.cmd, 'colorscheme base16-tomorrow-night')
 
+
 -- Highlight the region on yank
 A.nvim_create_autocmd('TextYankPost', {
     group = num_au,
@@ -118,13 +117,22 @@ local function map(m, k, v)
     vim.keymap.set(m, k, v, { silent = true })
 end
 
+-- nerdtree
+map('n', '<C-n>', ':NERDTreeToggle<CR>')
+g.NERDTreeDirArrowExpandable = '►'
+g.NERDTreeDirArrowCollapsible = '▼'
+g.NERDTreeShowLineNumbers=1
+g.NERDTreeShowHidden=1
+g.NERDTreeMinimalUI = 1
+g.NERDTreeWinSize=38
+
+-- vim rainbow
+g.rainbow_active=1
+
 -- Mimic shell movements
 map('i', '<C-E>', '<ESC>A')
 map('i', '<C-A>', '<ESC>I')
 
-
--- NERDTREE stuff
-map('n', '<Leader>t', ':NERDTreeToggle<CR>')
 
 -- PLUGINS
 -- Only required if you have packer configured as `opt`
@@ -140,35 +148,31 @@ return require('packer').startup(function()
   }
 
   -- File management --
-  use 'vifm/vifm.vim'
   use 'scrooloose/nerdtree'
   use 'tiagofumo/vim-nerdtree-syntax-highlight'
   use 'ryanoasis/vim-devicons'
-
-  -- Productivity --
-  use 'vimwiki/vimwiki'
-  use 'jreybert/vimagit'
 
   -- Tim Pope Plugins --
   use 'tpope/vim-surround'
 
   -- Syntax Highlighting and Colors --
   use 'PotatoesMaster/i3-vim-syntax'
-  use 'kovetskiy/sxhkd-vim'
-  use 'vim-python/python-syntax'
   use 'ap/vim-css-color'
+  use 'sheerun/vim-polyglot'
+  use 'dense-analysis/ale'
 
   -- Junegunn Choi Plugins --
   use 'junegunn/goyo.vim'
   use 'junegunn/limelight.vim'
   use 'junegunn/vim-emoji'
+  use 'junegunn/seoul256.vim'
 
   -- Colorschemes
   use 'RRethy/nvim-base16'
   use 'kyazdani42/nvim-palenight.lua'
 
   -- Other stuff
-  use 'frazrepo/vim-rainbow'
+  use 'luochen1990/rainbow'
   use 'tmsvg/pear-tree'
   use {'neoclide/coc.nvim', branch = 'release'}
 end)
