@@ -28,6 +28,8 @@ o.numberwidth = 2
 o.relativenumber = true
 o.signcolumn = 'yes'
 o.cursorline = true
+vim.cmd [[set colorcolumn=81]]
+vim.cmd [[set foldmethod=indent]]
 
 -- Better editing experience
 o.expandtab = true
@@ -88,11 +90,14 @@ g.maplocalleader = ' '
 
 
 require('lualine').setup()
+g.seoul256_background = 233
 
 -- COLORSCHEMES
 -- Uncomment just ONE of the following colorschemes!
-local ok, _ = pcall(vim.cmd, 'colorscheme base16-ayu-dark')
+local ok, _ = pcall(vim.cmd, 'colorscheme base16-seti')
+-- local ok, _ = pcall(vim.cmd, 'colorscheme base16-ayu-dark')
 -- local ok, _ = pcall(vim.cmd, 'colorscheme base16-dracula')
+-- local ok, _ = pcall(vim.cmd, 'colorscheme seoul256')
 -- local ok, _ = pcall(vim.cmd, 'colorscheme base16-gruvbox-dark-medium')
 -- local ok, _ = pcall(vim.cmd, 'colorscheme base16-monokai')
 -- local ok, _ = pcall(vim.cmd, 'colorscheme base16-nord')
@@ -117,6 +122,10 @@ local function map(m, k, v)
     vim.keymap.set(m, k, v, { silent = true })
 end
 
+local function nnoremap(m, k, v)
+    vim.keymap.set(m, k, v, { noremap = true })
+end
+
 -- nerdtree
 map('n', '<C-n>', ':NERDTreeToggle<CR>')
 g.NERDTreeDirArrowExpandable = '►'
@@ -133,6 +142,22 @@ g.rainbow_active=1
 map('i', '<C-E>', '<ESC>A')
 map('i', '<C-A>', '<ESC>I')
 
+-- Make adjusting split sizes easier
+nnoremap("n", "<C-h>", "<C-w>h")
+nnoremap("n", "<C-j>", "<C-w>j")
+nnoremap("n", "<C-k>", "<C-w>k")
+nnoremap("n", "<C-l>", "<C-w>l")
+
+-- Make adjusting split sizes a bit more friendly
+
+map('n', "<C-Left>", ":vertical resize +3<CR>")
+map('n', "<C-Right>", ":vertical resize -3<CR>")
+map('n', "<C-Up>", ":resize +3<CR>")
+map('n', "<C-Down>", ":resize -3<CR>")
+
+-- toggle two splits from vert to horiz or horiz to vert
+map('n', '<Leader>tv', '<C-w>t<C-w>H')
+map('n', '<Leader>th', '<C-w>t<C-w>K')
 
 -- PLUGINS
 -- Only required if you have packer configured as `opt`
@@ -143,7 +168,7 @@ return require('packer').startup(function()
 
   -- A better status line
   use {
-    'nvim-lualine/lualine.nvim',
+    'nvim-luaine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
 
@@ -154,12 +179,14 @@ return require('packer').startup(function()
 
   -- Tim Pope Plugins --
   use 'tpope/vim-surround'
+  use 'tpope/vim-commentary'
 
   -- Syntax Highlighting and Colors --
   use 'PotatoesMaster/i3-vim-syntax'
   use 'ap/vim-css-color'
   use 'sheerun/vim-polyglot'
   use 'dense-analysis/ale'
+  use 'jelera/vim-javascript-syntax'
 
   -- Junegunn Choi Plugins --
   use 'junegunn/goyo.vim'
