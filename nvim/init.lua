@@ -29,7 +29,6 @@ o.relativenumber = true
 o.signcolumn = 'yes'
 o.cursorline = true
 vim.cmd [[set colorcolumn=81]]
-vim.cmd [[set foldmethod=indent]]
 
 -- Better editing experience
 o.expandtab = true
