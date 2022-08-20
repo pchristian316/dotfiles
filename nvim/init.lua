@@ -34,11 +34,11 @@ vim.cmd [[set colorcolumn=81]]
 o.expandtab = true
 o.smarttab = true o.cindent = true
 o.autoindent = true
-o.wrap = true
+o.wrap = false
 o.textwidth = 300
 o.tabstop = 2
 o.shiftwidth = 2
-o.softtabstop = -1 -- If negative, shiftwidth value is used
+o.softtabstop = 2
 o.list = true
 o.listchars = 'trail:·,nbsp:◇,tab:→ ,extends:▸,precedes:◂'
 -- o.listchars = 'eol:¬,space:·,lead: ,trail:·,nbsp:◇,tab:→-,extends:▸,precedes:◂,multispace:···⬝,leadmultispace:│   ,'
@@ -77,10 +77,10 @@ o.splitbelow = true
 
 -- Better folds (don't fold by default)
 -- o.foldmethod = 'indent'
--- o.foldlevelstart = 99
+-- o.foldlevelstart = 2
 -- o.foldnestmax = 3
 -- o.foldminlines = 1
---
+
 opt.mouse = "a"
 
 -- Map <leader> to space
@@ -137,10 +137,6 @@ g.NERDTreeWinSize=38
 -- vim rainbow
 g.rainbow_active=1
 
--- Mimic shell movements
-map('i', '<C-E>', '<ESC>A')
-map('i', '<C-A>', '<ESC>I')
-
 -- Make adjusting split sizes easier
 nnoremap("n", "<C-h>", "<C-w>h")
 nnoremap("n", "<C-j>", "<C-w>j")
@@ -155,8 +151,12 @@ map('n', "<C-Up>", ":resize +3<CR>")
 map('n', "<C-Down>", ":resize -3<CR>")
 
 -- toggle two splits from vert to horiz or horiz to vert
-map('n', '<Leader>tv', '<C-w>t<C-w>H')
-map('n', '<Leader>th', '<C-w>t<C-w>K')
+map('n', '<Leader>tv', '<C-w>t<C-w>H') -- turn vertical
+map('n', '<Leader>th', '<C-w>t<C-w>K') -- turn horizontal
+
+-- editing vimrc
+nnoremap("n", ",v", ":source $MYVIMRC<CR>")
+nnoremap("n", ",e", ":edit $MYVIMRC<CR>")
 
 -- PLUGINS
 -- Only required if you have packer configured as `opt`
@@ -167,7 +167,7 @@ return require('packer').startup(function()
 
   -- A better status line
   use {
-    'nvim-luaine/lualine.nvim',
+    'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
 
@@ -179,6 +179,7 @@ return require('packer').startup(function()
   -- Tim Pope Plugins --
   use 'tpope/vim-surround'
   use 'tpope/vim-commentary'
+  use 'tpope/vim-repeat'
 
   -- Syntax Highlighting and Colors --
   use 'PotatoesMaster/i3-vim-syntax'
