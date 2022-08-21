@@ -94,6 +94,7 @@ g.seoul256_background = 233
 -- COLORSCHEMES
 -- Uncomment just ONE of the following colorschemes!
 local ok, _ = pcall(vim.cmd, 'colorscheme base16-seti')
+-- local ok, _ = pcall(vim.cmd, 'colorscheme base16-windows-10')
 -- local ok, _ = pcall(vim.cmd, 'colorscheme base16-ayu-dark')
 -- local ok, _ = pcall(vim.cmd, 'colorscheme base16-dracula')
 -- local ok, _ = pcall(vim.cmd, 'colorscheme seoul256')
@@ -144,7 +145,6 @@ nnoremap("n", "<C-k>", "<C-w>k")
 nnoremap("n", "<C-l>", "<C-w>l")
 
 -- Make adjusting split sizes a bit more friendly
-
 map('n', "<C-Left>", ":vertical resize +3<CR>")
 map('n', "<C-Right>", ":vertical resize -3<CR>")
 map('n', "<C-Up>", ":resize +3<CR>")
@@ -157,6 +157,9 @@ map('n', '<Leader>th', '<C-w>t<C-w>K') -- turn horizontal
 -- editing vimrc
 nnoremap("n", ",v", ":source $MYVIMRC<CR>")
 nnoremap("n", ",e", ":edit $MYVIMRC<CR>")
+
+-- using fzf
+nnoremap("n", "<C-p>", ":FZF<CR>")
 
 -- PLUGINS
 -- Only required if you have packer configured as `opt`
@@ -193,6 +196,7 @@ return require('packer').startup(function()
   use 'junegunn/limelight.vim'
   use 'junegunn/vim-emoji'
   use 'junegunn/seoul256.vim'
+  use 'junegunn/fzf'
 
   -- Colorschemes
   use 'RRethy/nvim-base16'
