@@ -77,7 +77,7 @@ return require('packer').startup(function()
 	use "lukas-reineke/indent-blankline.nvim"
 
 	-- startup screen
-	use 'leslie255/aleph-nvim'
+  use 'leslie255/aleph-nvim'
 
 	-- english grammar check
 	use 'rhysd/vim-grammarous'
@@ -95,5 +95,7 @@ return require('packer').startup(function()
 
   -- parantheses pairing
   use 'tmsvg/pear-tree'
+
+  use 'vimsence/vimsence'
 
 end)
