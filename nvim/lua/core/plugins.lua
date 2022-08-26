@@ -16,20 +16,20 @@ return require('packer').startup(function()
 	use 'moll/vim-bbye' -- for more sensible delete buffer cmd
 
 	-- themes (disabled other themes to optimize startup time)
-	use 'sainnhe/sonokai'
-	use 'tiagovla/tokyodark.nvim'
-	use 'projekt0n/github-nvim-theme'
-	use 'joshdick/onedark.vim'
-	use { 'catppuccin/nvim', as='catppuccin' }
-	use { 'sonph/onehalf', rtp='vim/' }
-	use 'ahmedabdulrahman/aylin.vim'
-	use "rebelot/kanagawa.nvim"
-	use 'NLKNguyen/papercolor-theme'
-	use 'liuchengxu/space-vim-dark'
-	use 'sainnhe/edge'
-	use 'B4mbus/oxocarbon-lua.nvim'
-	use 'Th3Whit3Wolf/one-nvim'
-	use 'RRethy/nvim-base16'
+ use 'sainnhe/sonokai'
+ use 'tiagovla/tokyodark.nvim'
+ use 'projekt0n/github-nvim-theme'
+ use 'joshdick/onedark.vim'
+ use { 'catppuccin/nvim', as='catppuccin' }
+ use { 'sonph/onehalf', rtp='vim/' }
+ use 'ahmedabdulrahman/aylin.vim'
+ use "rebelot/kanagawa.nvim"
+ use 'NLKNguyen/papercolor-theme'
+ use 'liuchengxu/space-vim-dark'
+ use 'sainnhe/edge'
+ use 'B4mbus/oxocarbon-lua.nvim'
+ use 'Th3Whit3Wolf/one-nvim'
+ use 'RRethy/nvim-base16'
 
 	-- file tree
 	use {
@@ -96,6 +96,9 @@ return require('packer').startup(function()
   -- parantheses pairing
   use 'tmsvg/pear-tree'
 
-  use 'vimsence/vimsence'
+  -- discord rich presence
+  use 'andweeb/presence.nvim'
+  -- dracula theme
+  use 'Mofiqul/dracula.nvim'
 
 end)
