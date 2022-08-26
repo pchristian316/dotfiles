@@ -9,6 +9,7 @@ if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
   source /usr/share/zsh/manjaro-zsh-prompt
 fi
 
+# pacman and yay
 alias pacup='sudo pacman -Syu'
 alias pacin='sudo pacman -Sy'
 alias pacrm='sudo pacman -Rns'
@@ -17,11 +18,18 @@ alias yayin='yay -Sy'
 alias yayrm='yay -Rns'
 alias unlock='sudo rm /var/lib/pacman/db.lck'
 
-alias shutdown='shutdown now'
+# shutdown quickly
+alias shutdown='systemctl poweroff'
 
+# change ls to exa
+alias ls='exa -l --color=always --group-directories-first' # my preferred listing
+alias la='exa -a --color=always --group-directories-first'  # all files and dirs
+alias lt='exa -aT --color=always --group-directories-first' # tree listing
+alias l.='exa -a | egrep "^\."'
 
-alias ls='ls -lh'
 alias vim='nvim'
+
+alias cat='bat'
 
 ex ()
 {
