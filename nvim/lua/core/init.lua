@@ -66,6 +66,11 @@ require('image').setup {
   render_using_dither = true,
 }
 
+require('matchparen').setup({
+  on_startup = true,
+  hl_group = 'MatchParen',
+  augroup_name = 'matchparen',
+})
 -- Load plugin configs
 -- plugins without extra configs are configured directly here
 require("impatient")

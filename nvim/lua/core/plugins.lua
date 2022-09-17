@@ -86,8 +86,7 @@ return require('packer').startup(function()
 	use 'samodostal/image.nvim'
 
   -- tim pope plugins
-  use 'tpope/vim-surround'
-  use 'tpope/vim-commentary'
+  use 'tpope/vim-surround' use 'tpope/vim-commentary'
   use 'tpope/vim-repeat'
 
   -- rainbow for treesitter
@@ -100,5 +99,14 @@ return require('packer').startup(function()
   use 'andweeb/presence.nvim'
   -- dracula theme
   use 'Mofiqul/dracula.nvim'
+
+  -- matching parantheses
+  use 'monkoose/matchparen.nvim'
+
+  -- disabling highlighting after search
+  use 'romainl/vim-cool'
+
+  -- smooth scrolling
+  use 'joeytwiddle/sexy_scroller.vim'
 
 end)

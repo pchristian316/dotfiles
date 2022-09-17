@@ -3,7 +3,7 @@ function M.config()
 	require("toggleterm").setup {
 		-- size can be a number or function which is passed the current terminal
 		size = 30,
-		open_mapping = "<f5>",
+    open_mapping = "<f5>",
 		on_open = function() end, -- function to run when the terminal opens
 		on_close = function() end, -- function to run when the terminal closes
 		on_stdout = function() end, -- callback for processing output on stdout
@@ -22,9 +22,9 @@ function M.config()
 		terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
 		persist_size = true,
 		persist_mode = true, -- if set to true (default) the previous terminal mode will be remembered
-		direction = 'horizontal', -- 'horizontal' 'vertical' 'tab' 'float'
+		direction = 'float', -- 'horizontal' 'vertical' 'tab' 'float'
 		close_on_exit = true, -- close the terminal window when the process exits
-		shell = vim.o.shell, -- change the default shell
+		shell = "/usr/bin/zsh", -- change the default shell
 		auto_scroll = true, -- automatically scroll to the bottom on terminal output
 		-- This field is only relevant if direction is set to 'float'
 		float_opts = {
@@ -36,7 +36,7 @@ function M.config()
 			-- like `size`, width and height can be a number or function which is passed the current terminal
 			width = 140,
 			height = 50,
-			winblend = 1,
+			winblend = 3,
 		},
 		winbar = {
 			enabled = false,
