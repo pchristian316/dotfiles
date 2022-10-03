@@ -39,13 +39,17 @@ return require('packer').startup(function()
 
 	-- language
 	use 'neovim/nvim-lspconfig'
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
 	use 'glepnir/lspsaga.nvim'
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'hrsh7th/cmp-buffer'
 	use 'hrsh7th/cmp-path'
 	use 'hrsh7th/cmp-cmdline'
+	use 'saadparwaiz1/cmp_luasnip'
 	use 'hrsh7th/nvim-cmp'
 	use 'L3MON4D3/LuaSnip'
+  use 'rafamadriz/friendly-snippets'
 	use 'nvim-treesitter/nvim-treesitter'
 	use 'simrat39/rust-tools.nvim'
 	use 'simrat39/symbols-outline.nvim'
@@ -86,7 +90,8 @@ return require('packer').startup(function()
 	use 'samodostal/image.nvim'
 
   -- tim pope plugins
-  use 'tpope/vim-surround' use 'tpope/vim-commentary'
+  use 'tpope/vim-surround'
+  use 'tpope/vim-commentary'
   use 'tpope/vim-repeat'
 
   -- rainbow for treesitter

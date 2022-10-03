@@ -1,14 +1,18 @@
+-- vim.opt.completeopt={'menu', 'menuone', 'noselect'}
+require("luasnip/loaders/from_vscode").lazy_load()
 local M = {}
 
 function M.config()
 	-- Setup nvim-cmp.
 	local cmp = require 'cmp'
+  local luasnip = require 'luasnip'
+
 	cmp.setup({
-		snippet = {
+    snippet = {
 			-- REQUIRED - you must specify a snippet engine
 			expand = function(args)
 				-- luasnip
-				require('luasnip').lsp_expand(args.body)
+				luasnip.lsp_expand(args.body)
 				-- vsnip
 				-- vim.fn["vsnip#anonymous"](args.body)
 				-- snippy
@@ -31,11 +35,30 @@ function M.config()
 			['<CR>'] = cmp.mapping.confirm({ select = true }),
 		},
 		sources = cmp.config.sources({
+			{ name = 'luasnip' }, -- For luasnip users.
 			{ name = 'nvim_lsp' },
-			-- { name = 'luasnip' }, -- For luasnip users.
+			{ name = 'buffer' },
+			{ name = 'nvim_lua' },
 			-- { name = 'ultisnips' }, -- For ultisnips users.
 			-- { name = 'snippy' }, -- For snippy users.
-		}, { { name = 'buffer' } })
+		}, { { name = 'path' } }),
+    formatting = {
+      fields = {'menu', 'abbr', 'kind'},
+      format = function(entry, item)
+        local menu_icon = {
+          nvim_lsp = 'λ',
+          luasnip = '⋗',
+          buffer = 'Ω',
+          path = '🖫',
+        }
+
+        item.menu = menu_icon[entry.source.name]
+        return item
+      end,
+    },
+    window = {
+      documentation = cmp.config.window.bordered()
+    },
 	})
 
 	-- You can also set special config for specific filetypes:
@@ -65,9 +88,6 @@ function M.config()
 		local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 		return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 	end
-
-	local luasnip = require("luasnip")
-	local cmp = require("cmp")
 
 	cmp.setup({
 
@@ -104,11 +124,19 @@ function M.config()
 	-- nvim-lspconfig config
 	-- List of all pre-configured LSP servers:
 	-- github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-	require 'lspconfig'.gopls.setup {}
+  -- require("nvim-lsp-installer").setup {}
+
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
+  require("mason").setup()
+  require("mason-lspconfig").setup()
+	-- require 'lspconfig'.gopls.setup {}
 	local servers = { 'ccls', 'rust_analyzer', 'pylsp', 'sumneko_lua' }
 	for _, lsp in pairs(servers) do
 		require('lspconfig')[lsp].setup {
-			on_attach = on_attach
+			-- on_attach = on_attach,
+      capabilities = capabilities,
 		}
 	end
 

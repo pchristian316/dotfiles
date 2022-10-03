@@ -13,9 +13,7 @@ if (vim.fn.has('termguicolors') == 1) then
 end
 -- tabs
 vim.opt.autoindent  = true
-vim.opt.tabstop     = 2
-vim.opt.shiftwidth  = 2
-vim.opt.softtabstop = 2
+vim.opt.tabstop     = 2 vim.opt.shiftwidth  = 2 vim.opt.softtabstop = 2
 vim.opt.expandtab   = true
 vim.opt.smarttab    = true
 vim.opt.cindent     = true
@@ -37,6 +35,10 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank({ higroup = 'Visual', timeout = 180})
   end,
 })
+
+-- smarter tabs?
+vim.opt.ignorecase = true
+vim.opt.infercase = true
 
 require("core.keymaps")
 --require("core.dvorak")	-- delete this line if you don't like using DVORAK

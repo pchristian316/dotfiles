@@ -24,4 +24,4 @@ endif
 
 autocmd FileType markdown setlocal spell
 
-colorscheme base16-ayu-dark
+colorscheme dracula
