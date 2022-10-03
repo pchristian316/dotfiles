@@ -55,6 +55,7 @@ return require('packer').startup(function()
 	use 'simrat39/symbols-outline.nvim'
 	use 'PotatoesMaster/i3-vim-syntax'
 	use 'ap/vim-css-color'
+  use 'sbdchd/neoformat'
 
 	-- git
 	use {
