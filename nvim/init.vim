@@ -2,13 +2,15 @@ lua require('core.init')
 
 " set clipboard^=unnamed,unnamedplus
 
+set inccommand=nosplit
+
 if has('unix')
 	set thesaurus+=/usr/share/dict/words
 endif
 
 if exists("g:neovide")
     " Neovide config
-	let g:neovide_refresh_rate=60	" come on it's just a text editor
+	let g:neovide_refresh_rate=30	" come on it's just a text editor
 	let g:neovide_transparency=1.0
 	let g:neovide_scroll_animation_length = 0.3
 	let g:neovide_remember_window_size = v:true

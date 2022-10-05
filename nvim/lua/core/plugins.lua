@@ -118,4 +118,9 @@ return require('packer').startup(function()
   -- highlight cursor when jumping
   use 'DanilaMihailov/beacon.nvim'
 
+  -- shade different splits
+  use 'sunjon/shade.nvim'
+
+  -- highlight the range you give in CMD mode
+  use 'winston0410/range-highlight.nvim'
 end)

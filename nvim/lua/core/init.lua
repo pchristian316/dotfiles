@@ -36,6 +36,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 vim.g.beacon_minimal_jump = 2
+vim.g.transparent_enabled = 1
 vim.o.scrolloff = 4
 
 -- smarter autocompletion
@@ -75,6 +76,11 @@ require('matchparen').setup({
   hl_group = 'MatchParen',
   augroup_name = 'matchparen',
 })
+
+require'shade'.setup({
+  overlay_opacity = 60,
+})
+
 -- Load plugin configs
 -- plugins without extra configs are configured directly here
 require("impatient")

@@ -43,13 +43,14 @@ function M.config()
 			-- { name = 'snippy' }, -- For snippy users.
 		}, { { name = 'path' } }),
     formatting = {
-      fields = {'menu', 'abbr', 'kind'},
+      fields = {'abbr', 'kind', 'menu'},
+      -- fields = {'abbr', 'menu'},
       format = function(entry, item)
         local menu_icon = {
-          nvim_lsp = 'λ',
-          luasnip = '⋗',
-          buffer = 'Ω',
-          path = '🖫',
+          nvim_lsp = '    λ[LSP]',
+          luasnip = '    ⋗[LuaSnip]',
+          buffer = '    Ω[Buffer]',
+          path = '    🖫 Path]',
         }
 
         item.menu = menu_icon[entry.source.name]

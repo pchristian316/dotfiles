@@ -4,6 +4,8 @@ vim.g.mapleader = ' '
 vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<cr>')
 -- y: telescope
 vim.keymap.set('n', '<C-p>', function() require 'telescope.builtin'.find_files {} end)
+vim.keymap.set('n', '<leader>ht', ':Telescope colorscheme<CR>')
+
 -- w: window
 vim.keymap.set('n', '<C-h>', '<C-w>h', { noremap = true })
 vim.keymap.set('n', '<C-j>', '<C-w>j', { noremap = true })
@@ -35,6 +37,10 @@ vim.keymap.set('n', ',v', ':source $MYVIMRC<CR>', { noremap = true })
 --toggle two splist from vert to horiz or vice versao
 vim.keymap.set('n', '<Leader>tv', '<C-w>t<C-w>H')
 vim.keymap.set('n', '<Leader>th', '<C-w>t<C-w>K')
+
+-- easy splits
+vim.keymap.set('n', '<Leader>s', ':sp<CR>')
+vim.keymap.set('n', '<Leader>vs', ':vs<CR>')
 
 -- remap ; to :
 vim.keymap.set('n', ';', ':', { noremap = true })
