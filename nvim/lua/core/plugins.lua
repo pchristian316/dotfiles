@@ -82,7 +82,7 @@ return require('packer').startup(function()
 	use "lukas-reineke/indent-blankline.nvim"
 
 	-- startup screen
-  use 'leslie255/aleph-nvim'
+  use "goolord/alpha-nvim"
 
 	-- english grammar check
 	use 'rhysd/vim-grammarous'
@@ -114,5 +114,8 @@ return require('packer').startup(function()
 
   -- smooth scrolling
   use 'joeytwiddle/sexy_scroller.vim'
+
+  -- highlight cursor when jumping
+  use 'DanilaMihailov/beacon.nvim'
 
 end)

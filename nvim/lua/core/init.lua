@@ -35,8 +35,10 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank({ higroup = 'Visual', timeout = 180})
   end,
 })
+vim.g.beacon_minimal_jump = 2
+vim.o.scrolloff = 4
 
--- smarter tabs?
+-- smarter autocompletion
 vim.opt.ignorecase = true
 vim.opt.infercase = true
 
@@ -77,12 +79,12 @@ require('matchparen').setup({
 -- plugins without extra configs are configured directly here
 require("impatient")
 
+require("configs.startscreen").config()
 require("configs.autocomplete").config()
 require("configs.symbols_outline").config()
 require("configs.statusline").config()
 require("configs.filetree").config()
 require("configs.treesitter").config()
-require("configs.startscreen").config()
 require("configs.git").config()
 require("configs.bufferline").config()
 require("configs.grammar").config()
