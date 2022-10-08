@@ -121,6 +121,9 @@ return require('packer').startup(function()
   -- shade different splits
   use 'sunjon/shade.nvim'
 
-  -- highlight the range you give in CMD mode
-  use 'winston0410/range-highlight.nvim'
+  -- minimap of code
+  use 'preservim/tagbar'
+
+  -- fancy
+  use 'folke/twilight.nvim'
 end)

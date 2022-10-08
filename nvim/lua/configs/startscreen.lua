@@ -19,6 +19,7 @@ function M.config()
   dashboard.section.buttons.val = {
     dashboard.button( "e", "  > New file" , ":ene <BAR> startinsert <CR>"),
     dashboard.button( "f", "  > Find file", ":cd $HOME/ | Telescope find_files<CR>"),
+    dashboard.button( "t", "  > Find Text   ", ":Telescope live_grep<CR>"),
     dashboard.button( "r", "  > Recent"   , ":Telescope oldfiles<CR>"),
     dashboard.button( "s", "  > Settings" , ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
     dashboard.button( "q", "  > Quit NVIM", ":qa<CR>"),
@@ -26,11 +27,12 @@ function M.config()
 
   local function footer()
     local plugins_count = vim.fn.len(vim.fn.globpath("~/.local/share/nvim/site/pack/packer/start", "*", 0, 1))
-    local time = os.date(" %H:%M:%S")
+    local time = os.date("                 %H:%M:%S")
     local version = vim.version()
     local nvim_version_info = "   v" .. version.major .. "." .. version.minor .. "." .. version.patch
+    local quote = "\nAny sufficiently advanced bug is indistinguishable from a feature."
 
-    return time .. "   " .. plugins_count .. " plugins" .. nvim_version_info
+    return time .. "   " .. plugins_count .. " plugins" .. nvim_version_info .. quote
   end
 
   dashboard.section.footer.val = footer()

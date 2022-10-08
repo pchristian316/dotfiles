@@ -3,6 +3,7 @@ lua require('core.init')
 " set clipboard^=unnamed,unnamedplus
 
 set inccommand=nosplit
+" set colorcolumn=81
 
 if has('unix')
 	set thesaurus+=/usr/share/dict/words
@@ -21,9 +22,9 @@ if exists("g:neovide")
 	let g:neovide_cursor_trail_length=0.8
 	let g:neovide_cursor_antialiasing=v:false	" i dont need it
 	let g:neovide_cursor_vfx_mode = "wireframe"
-	let g:neovide_remember_window_size = v:true
+	let g:neovide_remember_window_size = v:true                                   
 endif
 
 autocmd FileType markdown setlocal spell
 
-colorscheme dracula
+colorscheme kanagawa
