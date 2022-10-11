@@ -126,4 +126,12 @@ return require('packer').startup(function()
 
   -- fancy
   use 'folke/twilight.nvim'
+
+
+  -- org mode
+  use {
+    'nvim-neorg/neorg',
+    run = ":Neorg sync-parsers",
+    requires = 'nvim-lua/plenary.nvim'
+}
 end)

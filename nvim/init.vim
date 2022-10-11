@@ -1,6 +1,6 @@
 lua require('core.init')
 
-" set clipboard^=unnamed,unnamedplus
+set clipboard+=unnamedplus
 
 set inccommand=nosplit
 " set colorcolumn=81
@@ -27,4 +27,5 @@ endif
 
 autocmd FileType markdown setlocal spell
 
+colorscheme base16-kanagawa
 colorscheme kanagawa

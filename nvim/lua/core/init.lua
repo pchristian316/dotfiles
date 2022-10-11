@@ -28,6 +28,7 @@ vim.opt.swapfile    = false
 vim.opt.wrap = false
 vim.opt.list = true
 vim.opt.listchars = 'trail:·,nbsp:◇,tab:→ ,extends:▸,precedes:◂'
+
 -- highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = num_au,
@@ -95,3 +96,4 @@ require("configs.git").config()
 require("configs.bufferline").config()
 require("configs.grammar").config()
 require("configs.terminal").config()
+require("configs.neorg").config()
