@@ -60,7 +60,7 @@ vim.keymap.set('n', '<leader>hd', ':Gitsigns diffthis<cr>')
 vim.keymap.set('n', '<leader>hs', ':<C-U>Gitsigns select_hunk<CR>')
 -- source vimrc
 vim.keymap.set('n', ',v', ':source $MYVIMRC<CR>', { noremap = true })
---toggle two splist from vert to horiz or vice versao
+--toggle two splist from vert to horiz or vice versa; tv = turn vert, th = turn horiz
 vim.keymap.set('n', '<Leader>tv', '<C-w>t<C-w>H')
 vim.keymap.set('n', '<Leader>th', '<C-w>t<C-w>K')
 
@@ -73,3 +73,6 @@ vim.keymap.set('n', '<F8>', ':Tagbar<CR>')
 
 -- remap ; to :
 vim.keymap.set('n', ';', ':', { noremap = true })
+
+-- easier folds cause ZA SUCKS AS A KEYBINDS
+vim.keymap.set('n', '<Tab>', 'za')
