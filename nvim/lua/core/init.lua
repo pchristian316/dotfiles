@@ -66,12 +66,6 @@ vim.g.loaded_tutor_mode_plugin = 1
 vim.g.loaded_remote_plugins    = 1
 require("core.theme")
 
-require('image').setup {
-  min_padding = 5,
-  show_label = true,
-  render_using_dither = true,
-}
-
 require('matchparen').setup({
   on_startup = true,
   hl_group = 'MatchParen',

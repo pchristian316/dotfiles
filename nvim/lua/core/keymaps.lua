@@ -76,3 +76,5 @@ vim.keymap.set('n', ';', ':', { noremap = true })
 
 -- easier folds cause ZA SUCKS AS A KEYBINDS
 vim.keymap.set('n', '<Tab>', 'za')
+
+vim.keymap.set('n', '<leader>ff', ':%!fmt -120 -s<CR>')

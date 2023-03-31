@@ -87,9 +87,6 @@ return require('packer').startup(function()
 	-- english grammar check
 	use 'rhysd/vim-grammarous'
 
-	-- ascii image
-	use 'samodostal/image.nvim'
-
   -- tim pope plugins
   use 'tpope/vim-surround'
   use 'tpope/vim-commentary'
@@ -134,4 +131,7 @@ return require('packer').startup(function()
     run = ":Neorg sync-parsers",
     requires = 'nvim-lua/plenary.nvim'
 }
+
+  -- ai completion?
+  use 'aduros/ai.vim'
 end)
