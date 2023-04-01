@@ -128,6 +128,53 @@ function M.config()
   require("mason").setup()
   require("mason-lspconfig").setup()
 
+  local capabilities = require('cmp_nvim_lsp').default_capabilities()
+  require'lspconfig'.clangd.setup {
+    capabilities = capabilities,
+  }
+  require'lspconfig'.bashls.setup {
+    capabilities = capabilities, }
+  require'lspconfig'.arduino_language_server.setup {
+    capabilities = capabilities,
+  }
+  require'lspconfig'.cmake.setup {
+    capabilities = capabilities,
+  }
+  require'lspconfig'.neocmake.setup {
+    capabilities = capabilities,
+  }
+  require'lspconfig'.cssls.setup {
+    capabilities = capabilities,
+  }
+  require'lspconfig'.html.setup {
+    capabilities = capabilities,
+  }
+  require'lspconfig'.jsonls.setup {
+    capabilities = capabilities,
+  }
+  require'lspconfig'.jdtls.setup {
+    capabilities = capabilities,
+  }
+  require'lspconfig'.ltex.setup {
+    capabilities = capabilities,
+  }
+  require'lspconfig'.lua_ls.setup {
+    capabilities = capabilities,
+  }
+  require'lspconfig'.intelephense.setup {
+    capabilities = capabilities,
+  }
+  require'lspconfig'.pylsp.setup {
+    capabilities = capabilities,
+  }
+  require'lspconfig'.lemminx.setup {
+    capabilities = capabilities,
+  }
+  require'lspconfig'.yamlls.setup {
+    capabilities = capabilities,
+  }
+
+
 	local devicons = require('nvim-web-devicons')
 	cmp.register_source('devicons', {
 		complete = function(_, _, callback)
