@@ -155,6 +155,9 @@ function M.config()
   require'lspconfig'.jdtls.setup {
     capabilities = capabilities,
   }
+  require'lspconfig'.tsserver.setup {
+    capabilities = capabilities,
+  }
   require'lspconfig'.ltex.setup {
     capabilities = capabilities,
   }
