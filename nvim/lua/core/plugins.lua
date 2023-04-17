@@ -121,7 +121,7 @@ return require('packer').startup(function()
   -- minimap of code
   use 'preservim/tagbar'
 
-  -- fancy
+  -- fancy dimming limelight
   use 'folke/twilight.nvim'
 
 
@@ -132,6 +132,20 @@ return require('packer').startup(function()
     requires = 'nvim-lua/plenary.nvim'
 }
 
-  -- ai completion?
+  -- ai completion
   use 'aduros/ai.vim'
+
+  -- Packer
+use {
+  "folke/noice.nvim",
+  config = function()
+    require("noice").setup({
+        -- add any options here
+    })
+  end,
+  requires = {
+    -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+    "MunifTanjim/nui.nvim",
+  }
+ }
 end)

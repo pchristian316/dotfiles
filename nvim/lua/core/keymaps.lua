@@ -17,8 +17,8 @@ vim.keymap.set('n', '<C-Right>', ':vertical resize -3<CR>')
 vim.keymap.set('n', '<C-Up>', ':resize +3<CR>')
 vim.keymap.set('n', '<C-Down>', ': resize -3<CR>')
 -- b: buffer
-vim.keymap.set('n', '<leader>bn', ':bn<cr>')
-vim.keymap.set('n', '<leader>bp', ':bp<cr>')
+vim.keymap.set('n', '<Tab>', ':bn<cr>')
+vim.keymap.set('n', '<S-Tab>', ':bp<cr>')
 vim.keymap.set('n', '<leader>bd', ':Bdelete<cr>')
 -- p: plugins
 vim.keymap.set('n', '<leader>pi', ':PackerInstall<cr>')
@@ -75,6 +75,6 @@ vim.keymap.set('n', '<F8>', ':Tagbar<CR>')
 vim.keymap.set('n', ';', ':', { noremap = true })
 
 -- easier folds cause ZA SUCKS AS A KEYBINDS
-vim.keymap.set('n', '<Tab>', 'za')
+-- vim.keymap.set('n', '<Tab>', 'za')
 
-vim.keymap.set('n', '<leader>ff', ':%!fmt -120 -s<CR>')
+vim.keymap.set('n', '<leader>ff', ':%!fmt -100 -s<CR>')
