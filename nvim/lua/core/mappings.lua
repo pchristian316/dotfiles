@@ -22,7 +22,6 @@ M.general = {
     ["<C-l>"] = { "<C-w>l", "window right" },
     ["<C-j>"] = { "<C-w>j", "window down" },
     ["<C-k>"] = { "<C-w>k", "window up" },
-    [";"] = { ":", "i'm too lazy to press shift" },
 
     -- save
     ["<C-s>"] = { "<cmd> w <CR>", "save file" },
