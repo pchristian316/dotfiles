@@ -1,94 +1,110 @@
--- basics
-vim.cmd('syntax on')
-vim.cmd('filetype plugin indent on')
-vim.opt.number          = true
-vim.opt.relativenumber  = true
-vim.opt.termguicolors   = true
-vim.opt.shiftround      = true
-vim.opt.updatetime      = 100
-vim.opt.cursorline      = true
-vim.opt.autowrite       = true
-if (vim.fn.has('termguicolors') == 1) then
-    vim.opt.termguicolors = true
+local opt = vim.opt
+local g = vim.g
+local config = require("core.utils").load_config()
+
+-------------------------------------- globals -----------------------------------------
+g.nvchad_theme = config.ui.theme
+g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
+g.toggle_theme_icon = "   "
+g.transparency = config.ui.transparency
+
+-------------------------------------- options ------------------------------------------
+opt.laststatus = 3 -- global statusline
+opt.showmode = false
+
+opt.clipboard = "unnamedplus"
+opt.cursorline = true
+
+-- Indenting
+opt.expandtab = true
+opt.shiftwidth = 2
+opt.smartindent = true
+opt.tabstop = 2
+opt.softtabstop = 2
+
+opt.fillchars = { eob = " " }
+opt.ignorecase = true
+opt.smartcase = true
+opt.mouse = "a"
+
+-- Numbers
+opt.number = true
+opt.numberwidth = 2
+opt.ruler = false
+
+-- disable nvim intro
+opt.shortmess:append "sI"
+
+opt.signcolumn = "yes"
+opt.splitbelow = true
+opt.splitright = true
+opt.termguicolors = true
+opt.timeoutlen = 400
+opt.undofile = true
+
+-- interval for writing swap file to disk, also used by gitsigns
+opt.updatetime = 250
+
+-- go to previous/next line with h,l,left arrow and right arrow
+-- when cursor reaches end/beginning of line
+opt.whichwrap:append "<>[]hl"
+
+g.mapleader = " "
+
+-- disable some default providers
+for _, provider in ipairs { "node", "perl", "python3", "ruby" } do
+  vim.g["loaded_" .. provider .. "_provider"] = 0
 end
--- tabs
-vim.opt.autoindent  = true
-vim.opt.tabstop     = 2 vim.opt.shiftwidth  = 2 vim.opt.softtabstop = 2
-vim.opt.expandtab   = true
-vim.opt.smarttab    = true
-vim.opt.cindent     = true
 
--- undo and backup options
-vim.opt.backup      = false
-vim.opt.writebackup = false
-vim.opt.undofile    = true
-vim.opt.swapfile    = false
+-- add binaries installed by mason.nvim to path
+local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
+vim.env.PATH = vim.env.PATH .. (is_windows and ";" or ":") .. vim.fn.stdpath "data" .. "/mason/bin"
 
--- editing experience
-vim.opt.wrap = false
-vim.opt.list = true
-vim.opt.listchars = 'trail:·,nbsp:◇,tab:→ ,extends:▸,precedes:◂'
+-------------------------------------- autocmds ------------------------------------------
+local autocmd = vim.api.nvim_create_autocmd
 
--- highlight on yank
-vim.api.nvim_create_autocmd('TextYankPost', {
-  group = num_au,
+-- dont list quickfix buffers
+autocmd("FileType", {
+  pattern = "qf",
   callback = function()
-    vim.highlight.on_yank({ higroup = 'Visual', timeout = 180})
+    vim.opt_local.buflisted = false
   end,
 })
-vim.g.beacon_minimal_jump = 2
-vim.g.transparent_enabled = 1
-vim.o.scrolloff = 4
 
--- smarter autocompletion
-vim.opt.ignorecase = true
-vim.opt.infercase = true
+-- reload some chadrc options on-save
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = vim.tbl_map(
+    vim.fs.normalize,
+    vim.fn.glob(vim.fn.stdpath "config" .. "/lua/custom/**/*.lua", true, true, true)
+  ),
+  group = vim.api.nvim_create_augroup("ReloadNvChad", {}),
 
-require("core.keymaps")
---require("core.dvorak")	-- delete this line if you don't like using DVORAK
-require("core.plugins")
-require("core.gui")
--- disable some useless standard plugins to save startup time
--- these features have been better covered by plugins
-vim.g.loaded_matchparen        = 1
-vim.g.loaded_matchit           = 1
-vim.g.loaded_logiPat           = 1
-vim.g.loaded_rrhelper          = 1
-vim.g.loaded_tarPlugin         = 1
-vim.g.loaded_gzip              = 1
-vim.g.loaded_zipPlugin         = 1
-vim.g.loaded_2html_plugin      = 1
-vim.g.loaded_shada_plugin      = 1
-vim.g.loaded_spellfile_plugin  = 1
-vim.g.loaded_netrw             = 1
-vim.g.loaded_netrwPlugin       = 1
-vim.g.loaded_tutor_mode_plugin = 1
-vim.g.loaded_remote_plugins    = 1
-require("core.theme")
+  callback = function(opts)
+    local fp = vim.fn.fnamemodify(vim.fs.normalize(vim.api.nvim_buf_get_name(opts.buf)), ":r") --[[@as string]]
+    local app_name = vim.env.NVIM_APPNAME and vim.env.NVIM_APPNAME or "nvim"
+    local module = string.gsub(fp, "^.*/" .. app_name .. "/lua/", ""):gsub("/", ".")
 
-require('matchparen').setup({
-  on_startup = true,
-  hl_group = 'MatchParen',
-  augroup_name = 'matchparen',
+    require("plenary.reload").reload_module "base46"
+    require("plenary.reload").reload_module(module)
+    require("plenary.reload").reload_module "custom.chadrc"
+
+    config = require("core.utils").load_config()
+
+    vim.g.nvchad_theme = config.ui.theme
+    vim.g.transparency = config.ui.transparency
+
+    -- statusline
+    require("plenary.reload").reload_module("nvchad_ui.statusline." .. config.ui.statusline.theme)
+    vim.opt.statusline = "%!v:lua.require('nvchad_ui.statusline." .. config.ui.statusline.theme .. "').run()"
+
+    require("base46").load_all_highlights()
+    -- vim.cmd("redraw!")
+  end,
 })
 
-require'shade'.setup({
-  overlay_opacity = 60,
-})
+-------------------------------------- commands ------------------------------------------
+local new_cmd = vim.api.nvim_create_user_command
 
--- Load plugin configs
--- plugins without extra configs are configured directly here
-require("impatient")
-
-require("configs.startscreen").config()
-require("configs.autocomplete").config()
-require("configs.symbols_outline").config()
-require("configs.statusline").config()
-require("configs.filetree").config()
-require("configs.treesitter").config()
-require("configs.git").config()
-require("configs.bufferline").config()
-require("configs.grammar").config()
-require("configs.terminal").config()
-require("configs.neorg").config()
-require("configs.noice").config()
+new_cmd("NvChadUpdate", function()
+  require "nvchad.update"()
+end, {})
