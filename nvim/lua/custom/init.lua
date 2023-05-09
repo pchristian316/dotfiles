@@ -1,5 +1,6 @@
 vim.opt.relativenumber = true
 vim.opt.wrap = false
+vim.opt.conceallevel = 3
 vim.g.undotree_WindowLayout = 3
 
 -- flash on yank

@@ -14,9 +14,7 @@ local plugins = {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
-        "c", "cpp","cmake", "lua", "vim", "vimdoc", "query", "python", "java", "javascript",
-        "haskell", "html", "json", "latex", "markdown", "markdown_inline", "norg", "php",
-        "regex", "typescript", "verilog", "toml", "yaml"
+        "c", "cpp","lua",
       }
     }
   },
@@ -103,18 +101,29 @@ local plugins = {
         load = {
           ["core.defaults"] = {},
           ["core.concealer"] = {},
-          ["core.integrations.nvim-cmp"] = {}
+          ["core.integrations.nvim-cmp"] = {},
+          ["core.integrations.treesitter"] = {},
+          ["core.syntax"] = {},
+          ["core.dirman"] = {
+            config = {
+              workspaces = {
+                my_ws = "~/neorg"
+              },
+              index = "index.norg",
+              default_workspace = "my_ws";
+            },
+          },
       }
     })
     end,
     build = ":Neorg sync-parsers",
     dependencies = 'nvim-lua/plenary.nvim',
-    lazy = false
+    lazy = false,
   },
   {
     "mbbill/undotree",
     lazy = false,
-  }
+  },
 }
 
 return plugins
