@@ -26,6 +26,18 @@ M.general = {
     ["J"] = {":m '>+1<CR>gv=gv"},
     ["K"] = {":m '<-2<CR>gv=gv"},
     [";"] = {":"},
+  },
+
+  t = { -- terminal mode
+    -- ["<C-h>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true)},
+    -- ["<C-j>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true)},
+    -- ["<C-k>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true)},
+    -- ["<C-l>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true)},
+
+    ["<C-h>"] = { "<C-\\><C-n><C-w>h"},
+    ["<C-j>"] = { "<C-\\><C-n><C-w>j"},
+    ["<C-k>"] = { "<C-\\><C-n><C-w>k"},
+    ["<C-l>"] = { "<C-\\><C-n><C-w>l"},
   }
 
 }

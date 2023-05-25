@@ -1,9 +1,9 @@
 ---@type ChadrcConfig 
 local M = {}
 M.ui = {
-  theme = 'one_light',
+  theme = 'kanagawa',
   statusline = {
-    separator_style = "block"
+    separator_style = "block",
   },
 }
 M.plugins = "custom.plugins"

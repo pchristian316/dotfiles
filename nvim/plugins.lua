@@ -9,6 +9,7 @@ local plugins = {
         side = "left",
       }
     },
+    lazy = false,
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -20,40 +21,50 @@ local plugins = {
   },
   {
     "folke/noice.nvim",
-      config = function()
-        require("noice").setup({
-          -- add any options here
-          lsp = {
+    config = function()
+      require("noice").setup({
+        -- add any options here
+        lsp = {
           -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-            override = {
-              ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-              ["vim.lsp.util.stylize_markdown"] = true,
-              ["cmp.entry.get_documentation"] = true,
-            },
-            hover = {
-              enabled = false
-            },
-            signature = {
-              enabled = false
-            }
+          override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true,
           },
-          -- you can enable a preset for easier configuration
-          presets = {
-            bottom_search = true, -- use a classic bottom cmdline for search
-            command_palette = true, -- position the cmdline and popupmenu together
-            long_message_to_split = true, -- long messages will be sent to a split
-            inc_rename = false, -- enables an input dialog for inc-rename.nvim
-            lsp_doc_border = false, -- add a border to hover docs and signature help
+          hover = {
+            enabled = false
           },
-        })
-      end,
+          signature = {
+            enabled = false
+          }
+        },
+        -- you can enable a preset for easier configuration
+        presets = {
+          bottom_search = true, -- use a classic bottom cmdline for search
+          command_palette = true, -- position the cmdline and popupmenu together
+          long_message_to_split = true, -- long messages will be sent to a split
+          inc_rename = false, -- enables an input dialog for inc-rename.nvim
+          lsp_doc_border = false, -- add a border to hover docs and signature help
+        },
+      })
+    end,
 
     dependencies = {
       "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify"
+      "rcarriga/nvim-notify",
     },
 
     lazy = false
+  },
+  {
+    "rcarriga/nvim-notify",
+    config = function()
+      require("notify").setup({
+        -- stages = 'fade',
+        -- background_colour = 'FloatShadow',
+        timeout = 250,
+      })
+    end,
   },
   {
     "andweeb/presence.nvim",
@@ -92,7 +103,7 @@ local plugins = {
   },
   {
     "tpope/vim-commentary",
-   lazy = false
+    lazy = false
   },
   {
     'nvim-neorg/neorg',
@@ -100,7 +111,11 @@ local plugins = {
       require("neorg").setup({
         load = {
           ["core.defaults"] = {},
-          ["core.concealer"] = {},
+          ["core.concealer"] = {
+            config = {
+              icon_preset = "varied"
+            },
+          },
           ["core.integrations.nvim-cmp"] = {},
           ["core.integrations.treesitter"] = {},
           ["core.syntax"] = {},
@@ -113,17 +128,17 @@ local plugins = {
               default_workspace = "my_ws";
             },
           },
-      }
-    })
+        }
+      })
     end,
-    build = ":Neorg sync-parsers",
-    dependencies = 'nvim-lua/plenary.nvim',
-    lazy = false,
-  },
-  {
-    "mbbill/undotree",
-    lazy = false,
-  },
+		build = ":Neorg sync-parsers",
+		dependencies = 'nvim-lua/plenary.nvim',
+		lazy = false,
+	},
+	{
+		"mbbill/undotree",
+		lazy = false,
+	},
 }
 
 return plugins
