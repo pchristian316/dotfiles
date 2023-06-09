@@ -102,8 +102,15 @@ local plugins = {
     lazy = false
   },
   {
-    "tpope/vim-commentary",
-    lazy = false
+    "numToStr/Comment.nvim",
+    keys = { "gcc", "gbc" },
+    init = function()
+      require("core.utils").load_mappings "comment"
+    end,
+    config = function(_, opts)
+      require("Comment").setup(opts)
+    end,
+		lazy = false,
   },
   {
     'nvim-neorg/neorg',

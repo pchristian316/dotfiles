@@ -10,7 +10,6 @@ vim.opt.list = true
 vim.opt.conceallevel = 3
 vim.g.undotree_WindowLayout = 3
 
-
 -- flash on yank
 vim.cmd[[
 augroup highlight_yank
