@@ -1,10 +1,15 @@
 vim.opt.relativenumber = true
 vim.opt.wrap = true
 vim.opt.linebreak = true
-vim.opt.foldmethod= "manual"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.expandtab = false
--- vim.opt.fillchars:append('fold:•')
+
+-- folds
+vim.o.foldcolumn = "1" -- '0' is not bad
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+
 vim.o.listchars = "trail:·,nbsp:◇,tab:→ ,extends:▸,precedes:◂"
 vim.opt.list = true
 vim.opt.conceallevel = 3
