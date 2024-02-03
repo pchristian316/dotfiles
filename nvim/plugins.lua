@@ -256,8 +256,45 @@ local plugins = {
 		lazy = false,
 	},
 	{
-		"junegunn/goyo.vim",
+		"crag666/code_runner.nvim",
 		lazy = false,
+		config = function()
+			require("code_runner").setup({
+				mode = "term",
+				focus = "true",
+				startinsert = "true",
+				filetype = {
+					javascript = "node",
+					java = {
+						"cd $dir &&",
+						"javac $fileName &&",
+						"java $fileNameWithoutExt",
+					},
+					c = {
+						"cd $dir &&",
+						"gcc $fileName",
+						"-o $fileNameWithoutExt &&",
+						"$dir/$fileNameWithoutExt",
+					},
+					cpp = {
+						"cd $dir &&",
+						"g++ $fileName",
+						"-o $fileNameWithoutExt &&",
+						"$dir/$fileNameWithoutExt",
+					},
+					python = "python -u",
+					sh = "bash",
+					rust = {
+						"cd $dir &&",
+						"rustc $fileName &&",
+						"$dir/$fileNameWithoutExt",
+					},
+				},
+				project_path = "",
+				project = {},
+				prefix = "",
+			})
+		end,
 	},
 }
 

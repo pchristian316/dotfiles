@@ -2,7 +2,7 @@
 local M = {}
 
 M.ui = {
-  theme = 'github_light',
+  theme = 'kanagawa',
   statusline = {
     separator_style = "block",
   },

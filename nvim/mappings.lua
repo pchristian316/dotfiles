@@ -21,6 +21,8 @@ M.general = {
     ["<C-Down>"] = {":resize -3<CR>"},
     ["<C-Left>"] = {":vertical resize +3<CR>"},
     ["<C-Right>"] = {":vertical resize -3<CR>"},
+    ["<leader>r"] = {":RunCode<CR>", "run code"},
+		["<leader> "] = {"i <ESC>"},
   },
   v = {
     ["J"] = {":m '>+1<CR>gv=gv"},
