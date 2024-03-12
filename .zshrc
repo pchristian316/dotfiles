@@ -9,6 +9,13 @@ if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
   source /usr/share/zsh/manjaro-zsh-prompt
 fi
 
+export _JAVA_AWT_WM_NONREPARENTING=1
+export OPENAI_API_KEY="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"
+
+# doom emacs PATH
+export PATH="$HOME/.config/emacs/bin:$PATH"
+alias emacs="emacsclient -c -a 'emacs'"
+
 # pacman and yay
 alias pacup='sudo pacman -Syu'
 alias pacin='sudo pacman -Sy'
@@ -22,13 +29,12 @@ alias unlock='sudo rm /var/lib/pacman/db.lck'
 alias shutdown='systemctl poweroff'
 
 # change ls to exa
-alias ls='exa -l --color=always --group-directories-first' # my preferred listing
-alias la='exa -a --color=always --group-directories-first'  # all files and dirs
+alias ls='exa -l --icons --color=always --group-directories-first' # my preferred listing
+alias la='exa -a --icons --color=always --group-directories-first'  # all files and dirs
 alias lt='exa -aT --color=always --group-directories-first' # tree listing
-alias l.='exa -a | egrep "^\."'
+alias l.='exa -a --icons | egrep "^\."'
 
 alias vim='nvim'
-
 alias cat='bat'
 
 ex ()
@@ -53,5 +59,11 @@ ex ()
   fi
 }
 
+bindkey '^[[Z' autosuggest-accept
+
 ### Random colorscript ###
 colorscript random
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+alias ssh="kitty +kitten ssh"

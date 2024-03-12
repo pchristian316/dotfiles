@@ -2,6 +2,7 @@ vim.opt.relativenumber = true
 vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.expandtab = false
+vim.opt.cursorline = true
 
 -- folds
 vim.o.foldcolumn = "1" -- '0' is not bad
