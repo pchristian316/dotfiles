@@ -10,7 +10,6 @@ if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
 fi
 
 export _JAVA_AWT_WM_NONREPARENTING=1
-export OPENAI_API_KEY="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"
 
 # doom emacs PATH
 export PATH="$HOME/.config/emacs/bin:$PATH"
