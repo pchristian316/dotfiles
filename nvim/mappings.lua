@@ -1,42 +1,24 @@
-local M = {}
+require "nvchad.mappings"
 
--- In order to disable a default keymap, use
-M.disabled = {
-  n = {
-    ["<Esc>"] = { ":noh <CR>", "clear highlights" }
-  }
-}
+-- add yours here
 
--- Your custom mappings
-M.general = {
-  n = {
-    [";"] = {":"},
-    ["<leader>fs"] = {":e $MYVIMRC | :cd %:p:h | :e lua/custom/init.lua | :bd init.lua | :NvimTreeToggle <CR>", "open settings"},
-    ["<leader>u"] = {":UndotreeToggle<CR>", "open undotree"},
-    ["<C-d>"] = {"<C-d>zz"},
-    ["<C-u>"] = {"<C-u>zz"},
-    ["n"] = {"nzzzv"},
-    ["N"] = {"Nzzzv"},
-    ["<C-Up>"] = {":resize +3<CR>"},
-    ["<C-Down>"] = {":resize -3<CR>"},
-    ["<C-Left>"] = {":vertical resize +3<CR>"},
-    ["<C-Right>"] = {":vertical resize -3<CR>"},
-    ["<leader>r"] = {":RunCode<CR>", "run code"},
-		["<leader> "] = {"i <ESC>"},
-  },
-  v = {
-    ["J"] = {":m '>+1<CR>gv=gv"},
-    ["K"] = {":m '<-2<CR>gv=gv"},
-    [";"] = {":"},
-  },
+local map = vim.keymap.set
 
-  t = { -- terminal mode
-    ["<C-h>"] = { "<C-\\><C-n><C-w>h"},
-    ["<C-j>"] = { "<C-\\><C-n><C-w>j"},
-    ["<C-k>"] = { "<C-\\><C-n><C-w>k"},
-    ["<C-l>"] = { "<C-\\><C-n><C-w>l"},
-  }
+map({"n", "v"}, ";", ":", { desc = "CMD enter command mode" })
+-- map("i", "jk", "<ESC>")
+map({"n", "v"}, ";", ":", { desc = "CMD enter command mode" })
+map("n", "<leader>fs", ":e $MYVIMRC | :cd %:p:h | :e lua/custom/init.lua | :bd init.lua | :NvimTreeToggle <CR>", { desc = "open settings" })
+map("n", "<leader>fn", ":Neorg index<CR>")
+map("n", "<C-d>", "<C-d>zz")
+map("n", "<C-u>", "<C-u>zz")
+map("n", "n", "nzzzv")
+map("n", "N", "Nzzzv")
+map("n", "<C-Up>", ":resize +3<CR>")
+map("n", "<C-Down>", ":resize -3<CR>")
+map("n", "<C-Left>", ":vertical resize +3<CR>")
+map("n", "<C-Right>", ":vertical resize -3<CR>")
+map("n", "<leader> ", "i <ESC>")
 
-}
-
-return M
+map("v", "J", ":m '>+1<CR>gv=gv")
+map("v", "K", ":m '<-2<CR>gv=gv")
+-- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")

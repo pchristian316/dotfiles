@@ -1,20 +1,27 @@
----@type ChadrcConfig 
+-- This file needs to have same structure as nvconfig.lua 
+-- https://github.com/NvChad/ui/blob/v3.0/lua/nvconfig.lua
+-- Please read that file to know all available options :( 
+
+---@type ChadrcConfig
 local M = {}
 
-M.ui = {
-	theme = 'kanagawa',
+M.base46 = {
+	theme = "kanagawa",
 	statusline = {
 		separator_style = "block",
 	},
-	hl_override = {
-		-- CursorLine = {
-		-- 	bg = "#223249"
-		-- },
-	},
+
+	-- hl_override = {
+	-- 	Comment = { italic = true },
+	-- 	["@comment"] = { italic = true },
+	-- },
 }
 
-M.plugins = "custom.plugins"
-
-M.mappings = require "custom.mappings"
+M.nvdash = { load_on_startup = true }
+-- M.ui = {
+--       tabufline = {
+--          lazyload = false
+--      }
+--}
 
 return M
