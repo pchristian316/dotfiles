@@ -115,12 +115,15 @@ return {
 	},
 	{
 		"chrisgrieser/nvim-origami",
-		event = "BufReadPost", -- later will not save folds
+		event = "VeryLazy",
 		config = function()
 			require("origami").setup({
-				keepFoldsAcrossSessions = true,
+				-- keepFoldsAcrossSessions = true,
 				pauseFoldsOnSearch = true,
-				setupFoldKeymaps = true,
+				foldKeymaps = {
+					setup = true,
+					hOnlyOpensOnFirstColumn = false,
+				},
 			})
 		end,
 	},
