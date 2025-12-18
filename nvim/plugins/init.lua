@@ -1,20 +1,13 @@
 return {
-  {
-    "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
-    opts = require "configs.conform",
-  },
+	-- These are some examples, uncomment them if you want to see them work!
+	{
+		"neovim/nvim-lspconfig",
+		config = function()
+			require "configs.lspconfig"
+		end, },
 
-  -- These are some examples, uncomment them if you want to see them work!
-  {
-    "neovim/nvim-lspconfig",
-    config = function()
-      require "configs.lspconfig"
-    end,
-  },
-
-  -- test new blink
-  { import = "nvchad.blink.lazyspec" },
+	-- test new blink
+	{ import = "nvchad.blink.lazyspec" },
 
 	{
 		"nvim-tree/nvim-tree.lua",
@@ -27,14 +20,6 @@ return {
 			}
 		},
 		lazy = false,
-	},
-	{
-		"nvim-treesitter/nvim-treesitter",
-		opts = {
-			ensure_installed = {
-				"c", "cpp","lua",
-			}
-		}
 	},
 	{
 		"folke/noice.nvim",
@@ -84,17 +69,6 @@ return {
 		end,
 	},
 	{
-		"andweeb/presence.nvim",
-		config = function()
-			require("presence").setup({
-		})end,
-		lazy = false
-	},
-	{
-		"junegunn/vim-slash",
-		lazy = false
-	},
-	{
 		"tpope/vim-surround",
 		lazy = false
 	},
@@ -107,54 +81,93 @@ return {
 		lazy = false,
 	},
 	{
-		"ggandor/leap.nvim",
-		config = function()
-			require("leap").add_default_mappings()
-		end,
-		lazy = false,
-	},
-	{
 		"chrisgrieser/nvim-origami",
 		event = "VeryLazy",
 		config = function()
 			require("origami").setup({
 				-- keepFoldsAcrossSessions = true,
 				pauseFoldsOnSearch = true,
+				autoFold = {
+					enabled = false,
+				},
 				foldKeymaps = {
 					setup = true,
 					hOnlyOpensOnFirstColumn = false,
-				},
+				}
 			})
 		end,
 	},
 	{
-		"xiyaowong/transparent.nvim",
-		config = function()
-			require("transparent").setup({
-				extra_groups = {'NvimTreeNormal', 'NvimTreeNormalNC', 'FoldColumn', 'Folded'},
-				exclude_groups = { -- table: default groups
-					'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
-					'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
-					'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
-					'SignColumn', 'CursorLineNr', 'EndOfBuffer', 'CursorLine'},
-			})
-		end,
+		"romainl/vim-cool",
 		lazy = false,
 	},
 	{
-		"NvChad/nvterm",
-		config = function ()
-			require("nvterm").setup({
-				terminals = {
-					shell = "/usr/bin/zsh",
+		"HiPhish/rainbow-delimiters.nvim",
+		lazy = false,
+	},
+	{
+		"christoomey/vim-tmux-navigator",
+		lazy = false,
+	},
+	{
+		"xiyaowong/transparent.nvim",
+		lazy = false,
+	},
+	-- {
+	-- 	"nvim-neorg/neorg",
+	-- 	lazy = false,
+	-- 	version = "*",
+	-- 	config = function()
+	-- 		require("neorg").setup {
+	-- 			load = {
+	-- 				["core.defaults"] = {},
+	-- 				["core.concealer"] = {},
+	-- 				["core.dirman"] = {
+	-- 					config = {
+	-- 						workspaces = {
+	-- 							notes = "~/notes",
+	-- 						},
+	-- 						default_workspace = "notes",
+	-- 					},
+	-- 				},
+	-- 			},
+	-- 		}
+	-- 	end,
+	-- },
+	{
+		"vimwiki/vimwiki",
+		event = "BufEnter *.md",
+		keys = {"<leader>ww", "<leader>wt"},
+		init = function()
+			vim.g.vimwiki_list = {
+				{
+					syntax = "markdown",
+					ext = "md",
 				},
-			})
+			}
+			vim.g.vimwiki_global_ext = 0;
+			vim.treesitter.language.register('markdown', 'vimwiki')
 		end,
 	},
 	{
-		"iamcco/markdown-preview.nvim",
-		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-		ft = { "markdown" },
-		build = function() vim.fn["mkdp#util#install"]() end,
+		'MeanderingProgrammer/render-markdown.nvim',
+		lazy = false,
+		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' },            -- if you use the mini.nvim suite
+		dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
+		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+		---@module 'render-markdown'
+		---@type render.md.UserConfig
+		opts = {
+			file_types = { 'markdown', 'vimwiki'},
+			heading = {
+				-- icons = { '✸ ', '✦ ', '✧ ', '◆ ', '◇ ', '• ' },
+				-- icons = { ' ', ' ', ' ', ' ', ' ', ' ' },
+				-- icons = { '✱ ', '✲ ', '✳ ', '✴ ', '❇ ', '❈ ' },
+				-- icons = { '✱ ', '✲ ', '✳ ', '✶ ', '✷ ', '✴ ' },
+				-- icons = { '✦ ', '✧ ', '✩ ', '✪ ', '✫ ', '✬ ' },
+				icons = { '✶ ', '✷ ', '✹ ', '✺ ', '✵ ', '✴ '},
+				width = 'full',
+			},
+		},
 	},
 }

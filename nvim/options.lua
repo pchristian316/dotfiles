@@ -2,17 +2,20 @@ require "nvchad.options"
 
 -- add yours here!
 
--- local o = vim.o
+local o = vim.o
 -- o.cursorlineopt ='both' -- to enable cursorline!
-vim.opt.relativenumber = true
-vim.opt.wrap = true
-vim.opt.linebreak = true
-vim.opt.expandtab = false
-vim.opt.cursorline = true
+o.relativenumber = true
+o.wrap = true
+o.linebreak = true
+o.expandtab = false
+o.cursorline = true
+o.foldlevel = 99
+o.foldlevelstart = 99
+o.winborder = "rounded"
 
-vim.o.listchars = "trail:·,nbsp:◇,tab:→ ,extends:▸,precedes:◂"
+-- vim.o.listchars = "trail:·,nbsp:◇,tab:→ ,extends:▸,precedes:◂"
 vim.opt.list = true
-vim.opt.conceallevel = 3
+vim.opt.conceallevel = 2
 vim.g.undotree_WindowLayout = 3
 
 -- flash on yank
