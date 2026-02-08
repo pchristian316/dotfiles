@@ -1,0 +1,17 @@
+[general]
+import = [
+	"~/.config/alacritty/themes/themes/kanagawa_wave.toml"
+]
+
+[font]
+normal = {family = "Iosevka Nerd Font", style ="Regular"}
+size = 20.0
+
+[cursor]
+style = "Block"
+
+[terminal]
+shell = "zsh"
+
+[window]
+opacity = 0.90
