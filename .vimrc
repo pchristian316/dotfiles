@@ -17,6 +17,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight',
 Plug 'ryanoasis/vim-devicons',
 Plug 'itchyny/lightline.vim',
 Plug 'frazrepo/vim-rainbow',
+Plug 'jiangmiao/auto-pairs',
 
 call plug#end()
 
@@ -55,12 +56,12 @@ set splitright             " Open new windows right of the current window.
 
 set report      =0         " Always report changed lines.
 
-set list                   " Show non-printable characters.
-if has('multi_byte') && &encoding ==# 'utf-8'
-  let &listchars = 'tab:▸ ,extends:❯,precedes:❮,nbsp:±'
-else
-  let &listchars = 'tab:> ,extends:>,precedes:<,nbsp:.'
-endif
+"set list                   " Show non-printable characters.
+"if has('multi_byte') && &encoding ==# 'utf-8'
+"  let &listchars = 'tab:▸ ,extends:❯,precedes:❮,nbsp:±'
+"else
+"  let &listchars = 'tab:> ,extends:>,precedes:<,nbsp:.'
+"endif
 
 " mappings
 let mapleader = ' '
