@@ -7,6 +7,7 @@ local map = vim.keymap.set
 -- map("i", "jk", "<ESC>")
 map({"n", "v"}, ";", ":", { desc = "CMD enter command mode" })
 map("n", "<leader>fs", "<cmd>e $MYVIMRC | :cd %:p:h | :e lua/custom/init.lua | :bd init.lua | :NvimTreeToggle <CR>", { desc = "open settings" })
+map("n", "-", "<CMD>Oil<CR>", {desc = "open parent directory"})
 map("n", "<leader>fn", "<cmd>Neorg index<CR>")
 map("n", "<leader>u", "<cmd>UndotreeToggle<CR>")
 map("n", "<C-d>", "<C-d>zz")

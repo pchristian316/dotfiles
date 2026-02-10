@@ -1,8 +1,7 @@
 return {
 	-- These are some examples, uncomment them if you want to see them work!
 	{
-		"neovim/nvim-lspconfig",
-		config = function()
+		"neovim/nvim-lspconfig", config = function()
 			require "configs.lspconfig"
 		end, },
 
@@ -169,5 +168,23 @@ return {
 				width = 'full',
 			},
 		},
+	},
+	{
+		'stevearc/oil.nvim',
+		---@module 'oil'
+		---@type oil.SetupOpts
+		opts = {},
+		-- Optional dependencies
+		-- dependencies = { { "nvim-mini/mini.icons", opts = {} } },
+		dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+		-- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+		config = function()
+			require("oil").setup({
+				default_file_explorer = true,
+				delete_to_trash = true,
+				skip_confirm_for_simple_edits = true,
+			})
+		end,
+		lazy = false,
 	},
 }
