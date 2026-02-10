@@ -17,7 +17,11 @@ o.winborder = "rounded"
 vim.opt.list = true
 vim.opt.conceallevel = 2
 vim.g.undotree_WindowLayout = 3
-vim.o.guifont = "Iosevka Nerd Font:h20"
+
+if vim.g.neovide then
+	vim.o.guifont = "Iosevka Nerd Font:h20"
+	vim.g.neovide_theme = 'bg_color'
+end
 
 -- flash on yank
 vim.cmd[[
